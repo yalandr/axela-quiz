@@ -56,12 +56,6 @@ a {
 .flex-end {
     justify-content: flex-end;
 }
-.btn {
-    
-}
-.btn:hover {
-    
-}
 
 /*==== HEADER ================*/
 .header {
@@ -371,4 +365,24 @@ a {
     #FBB564 6px,
     #FBB564 12px
     );
+}
+
+
+/*==== THANKYOU PAGE =============*/
+.container.thankyou {
+    max-width: 660px;
+    text-align: center;
+}
+.thankyou-heading {
+    font-weight: 800;
+    font-size: 4rem;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+.thankyou-text {
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #FFFFFF;
+    margin: 1rem 0 3.5rem 0;
 }

@@ -39,6 +39,9 @@ const questionBack = () => {
     questionsPassed--;
     progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
     progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
+    document.querySelectorAll('.question-number').forEach((elem) => {
+        elem.innerText = `${questionsPassed + 1}.`;
+    });
 }
 
 btnNext.addEventListener('click', (e) => {
