@@ -83,15 +83,10 @@ a {
     flex: 1;
 }
 .quiz-step {
-    position: relative;
-    visibility: none;
-    opacity: 0;
-    z-index: -3;
+    display: none;
 }
 .quiz-step.active {
-    visibility: visible;
-    opacity: 1;
-    z-index: 3;
+    display: flex;
 }
 .question-wrapper {
     padding: 4rem 0 2rem 0;
@@ -199,6 +194,7 @@ a {
     height: 3rem;
     display: block;
     cursor: pointer;
+    opacity: 0
 }
 .btn {
     width: 14.5rem;
