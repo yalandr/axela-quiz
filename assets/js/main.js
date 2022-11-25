@@ -3,6 +3,9 @@ const quizStep = document.querySelectorAll('.quiz-step');
 const arrowBack = document.querySelector('.arrow-back-img');
 const progressBarLine = document.querySelector('.progress-bar-line');
 const progressPercentage = document.querySelector('.progress-percentage');
+
+document.querySelector('.question-number').innerText = '1.';
+
 let index = 0;
 let questionsPassed = 0;
 let inputValidated = false;
@@ -21,6 +24,9 @@ const questionSwitch = () => {
         console.log(questionsPassed);
         progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
         progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
+        document.querySelectorAll('.question-number').forEach((elem) => {
+            elem.innerText = `${questionsPassed + 1}.`;
+        });
     } else {
         return false;
     }
