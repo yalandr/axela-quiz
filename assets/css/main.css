@@ -480,6 +480,9 @@ a {
     .question-wrapper {
         padding: 2rem 0 2rem 0;
     }
+    .question-wrapper .container {
+        flex-wrap: wrap;
+    }
     .question-name {
         font-size: 1rem;
     }
@@ -505,9 +508,38 @@ a {
         padding: 0 1.5rem 0 2.5rem;
         font-size: 0.875rem;
     }
+    .form-group.checkbox {
+        width: 100%;
+        margin-bottom: 1rem;
+        height: 2.8rem;
+    }
+    .form-group.checkbox label {
+        height: 3rem;
+        padding: 0 1.5rem 0 2.5rem;
+        font-size: 0.875rem;
+    }
+    .form-group.checkbox label::before {
+        width: 1rem;
+        height: 1rem;
+        left: 0.8rem;
+    }
+    .added-list-item {
+        height: 3rem;
+        margin-bottom: 0.875rem;
+        background-size: 1rem;
+        font-size: 0.875rem;
+        padding: 0 1rem;
+        background-position: 96% 50%;
+    }
+    .addition-input-wrapper {
+        margin-top: 3rem;
+    }
     .addition-input-heading {
         font-size: 0.875rem;
         margin-bottom: 0.75rem;
+    }
+    .control-panel {
+        padding: 2rem 0 2rem 0;
     }
     .arrow-back-img {
         width: 2.5rem;
@@ -521,5 +553,17 @@ a {
     .arrow-next-img {
         width: 8px;
         margin-left: 12px;
+    }
+    .progress-wrapper .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .footer-text {
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+    }
+    .question-wrapper .container .text {
+        margin-top: 0.5rem;
+        width: 100%;
     }
 }
