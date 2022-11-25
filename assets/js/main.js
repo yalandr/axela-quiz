@@ -40,6 +40,13 @@ btnNext.addEventListener('click', (e) => {
     questionSwitch();
 })
 
+document.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      questionSwitch();
+    }
+});
+
 arrowBack.addEventListener('click', (e) => {
     e.preventDefault();
     questionBack();
