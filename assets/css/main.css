@@ -270,6 +270,7 @@ a {
     line-height: 1.5;
     color: #C8C8C8;
     margin-bottom: 1rem;
+    margin-left: 1rem;
 }
 
 
@@ -476,5 +477,49 @@ a {
 }
 
 @media (max-width: 576px) {
-    
+    .question-wrapper {
+        padding: 2rem 0 2rem 0;
+    }
+    .question-name {
+        font-size: 1rem;
+    }
+    .answer-wrapper {
+        padding: 2rem 0 2rem 0;
+    }
+    .form-group input[type=text] {
+        height: 3rem;
+        font-size: 0.875rem;
+        padding: 0 1rem;
+    }
+    .form-group.radio {
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+    .form-group.radio label::before {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.5rem;
+    }
+    .form-group.radio label {
+        height: 3rem;
+        padding: 0 1.5rem 0 2.5rem;
+        font-size: 0.875rem;
+    }
+    .addition-input-heading {
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+    .arrow-back-img {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .btn {
+        width: 11.8rem;
+        height: 2.5rem;
+        font-size: 0.875rem;
+    }
+    .arrow-next-img {
+        width: 8px;
+        margin-left: 12px;
+    }
 }
