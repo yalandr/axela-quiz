@@ -188,11 +188,14 @@ a {
     background-position: center
 }
 
+/*==== INPUT-CHECKBOX ===============*/
+
 
 
 
 /*==== ADDITION INPUT ================*/
 .addition-input-wrapper {
+    /* display: none; */
     margin-top: 4rem;
 }
 .addition-input-heading {
