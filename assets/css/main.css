@@ -82,8 +82,16 @@ a {
 .main {
     flex: 1;
 }
-.quiz-step > * {
-    flex: 1 auto;
+.quiz-step {
+    position: relative;
+    visibility: none;
+    opacity: 0;
+    z-index: -3;
+}
+.quiz-step.active {
+    visibility: visible;
+    opacity: 1;
+    z-index: 3;
 }
 .question-wrapper {
     padding: 4rem 0 2rem 0;
@@ -168,16 +176,18 @@ a {
     width: 1.5rem;
     height: 1.5rem;
     background-color: #282828;
-    background-image: url('../img/svg/checked-orange.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
     border-radius: 50%;
     position: absolute;
     top: 50%;
     transform:translateY(-50%);
     left: 1.25rem;
     margin-right: 1rem;
+}
+.form-group.radio input:checked~label::before {
+    background-image: url('../img/svg/checked-orange.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center
 }
 
 
