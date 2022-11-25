@@ -12,22 +12,28 @@ if (1) {
 }
 
 const questionSwitch = () => {
-    quizStep.item(index).classList.remove('active');
-    quizStep.item(index+1).classList.add('active');
-    arrowBack.style.opacity = '1';
-    index++;
-    questionsPassed+1;
-    console.log(quizStep[index]);
-    progressBarLine.style.width = 100 / quizStep.length * quizStep.item(index) + '%';
-    // progressPercentage.innerText = Math.ceil(100 / quizStep.length) + '%';
+    if (questionsPassed+1 < quizStep.length) {
+        quizStep.item(index).classList.remove('active');
+        quizStep.item(index+1).classList.add('active');
+        arrowBack.style.opacity = '1';
+        index++;
+        questionsPassed++;
+        console.log(questionsPassed);
+        progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
+        progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
+
+    } else {
+        return false;
+    }
 }
 
 const questionBack = () => {
     quizStep.item(index).classList.remove('active');
     quizStep.item(index-1).classList.add('active');
     index--;
-    progressBarLine.style.width = 100 / quizStep.length + '%';
-    progressPercentage.innerText = Math.ceil(100 / quizStep.length) + '%';
+    questionsPassed--;
+    progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
+    progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
 }
 
 btnNext.addEventListener('click', (e) => {

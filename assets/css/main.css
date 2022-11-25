@@ -206,6 +206,9 @@ a {
 
 
 /*==== CONTROL-PANEL ======================*/
+.control-panel {
+    padding-bottom: 3rem;
+}
 .arrow-back-img {
     width: 3rem;
     height: 3rem;
@@ -252,6 +255,8 @@ a {
 .footer {
     width: 100%;
     background-color: transparent;
+}
+.progress-wrapper {
     border-top: 1px solid #222222;
     padding: 1.5rem 0;
 }
