@@ -178,6 +178,9 @@ a {
     left: 1.25rem;
     margin-right: 1rem;
 }
+.form-group.radio input:checked~label {
+    border: 1px solid #F19422;
+}
 .form-group.radio input:checked~label::before {
     background-image: url('../img/svg/checked-orange.svg');
     background-repeat: no-repeat;
@@ -185,6 +188,20 @@ a {
     background-position: center
 }
 
+
+
+
+/*==== ADDITION INPUT ================*/
+.addition-input-wrapper {
+    margin-top: 4rem;
+}
+.addition-input-heading {
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #C8C8C8;
+    margin-bottom: 1rem;
+}
 
 
 
@@ -231,7 +248,7 @@ a {
 }
 
 
-
+/*==== FOOTER =====================*/
 .footer {
     width: 100%;
     background-color: transparent;
@@ -262,7 +279,7 @@ a {
     top: 0;
     left: 0;
     height: 100%;
-    width: 30%;
+    width: 0;
     background: repeating-linear-gradient(
     -55deg,
     #EE9534,
