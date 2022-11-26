@@ -38,6 +38,9 @@ a {
 .wrap {
     flex-wrap: wrap;
 }
+.no-wrap {
+    flex-wrap: nowrap !important;
+}
 .column {
     flex-direction: column;
 }
@@ -526,6 +529,10 @@ a {
         height: 3rem;
         font-size: 0.875rem;
         padding: 0 1rem;
+    }
+    .form-control.text.valid, 
+    .form-control.email.valid {
+        background-position: 98% 50%;
     }
     .form-group.radio {
         width: 100%;
