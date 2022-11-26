@@ -43,6 +43,24 @@ inputText.forEach((el) => {
     });
 });
 
+// EMAIL INPUT VALIDATION
+let inputEmail = document.querySelectorAll('.form-control.email');
+
+inputEmail.forEach((el) => {
+    el.addEventListener('input', () => {
+        if (el.value.includes('@')) {
+            isInputValidated = true;
+            el.classList.add('valid');
+            btnAble();
+        } else {
+            isInputValidated = false;
+            el.classList.remove('valid');
+            btnDisable();
+        }
+    })
+})
+
+
 // INPUT RADIO
 let inputRadio = document.querySelectorAll('.form-control.radio');
 
