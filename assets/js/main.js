@@ -10,6 +10,23 @@ let index = 0;
 let questionsPassed = 0;
 let inputValidated = false;
 
+let inputText = document.querySelector('.form-control.text');
+
+inputText.addEventListener('input', () => {
+    console.log(inputText.value);
+    if (inputText.value.trim().length > 1) {
+        inputValidated = true;
+        inputText.classList.add('valid');
+        btnNext.style.opacity = '1';
+        btnNext.removeAttribute('disabled');
+    } else {
+        inputValidated = false;
+        inputText.classList.remove('valid');
+        btnNext.style.opacity = '0.5';
+        btnNext.setAttribute("disabled", "");
+    }
+});
+
 if (1) {
     inputValidated = true;
 }
@@ -53,10 +70,11 @@ document.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       questionSwitch();
+      dataGetting();
     }
 });
 
 arrowBack.addEventListener('click', (e) => {
     e.preventDefault();
     questionBack();
-})
+});

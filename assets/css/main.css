@@ -105,7 +105,7 @@ a {
 }
 
 /*==== INPUT-TEXT ===========================*/
-.form-group input[type=text] {
+.form-control.text {
     width: 100%;
     height: 4rem;
     padding: 0 1.5rem;
@@ -119,13 +119,13 @@ a {
     color: #fff;
     position: relative;
 }
-.form-group input[type=text]::placeholder {
+.form-control.text::placeholder {
     color: #7D7D7D;
 }
-.form-group input[type=text]:focus {
+.form-control.text:focus {
     border: 1px solid #F19422;
 }
-.form-group input[type=text].valid {
+.form-control.text.valid {
     border: 1px solid #F19422;
     background-image: url(../img/svg/checked-orange.svg);
     background-size: 1.5rem;
@@ -301,10 +301,11 @@ a {
     color: #111111;
     cursor: pointer;
     border: none;
+    opacity: 0.5;
     transition: .2s;
 }
-.btn:hover {
-    box-shadow: 0 0 6px 0 #FFFC52;
+.btn:active {
+    transform: scale(0.98);
 }
 .arrow-next-img {
     width: 14px;

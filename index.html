@@ -13,7 +13,7 @@
             <img src="assets/img/svg/logo.svg" alt="Logotype" class="header-logo-img">
         </header>
         <main class="main">
-            <form class="main-form">
+            <form class="main-form" id="mainForm">
                 <div class="quiz-step flex column active">
                     <div class="question-wrapper">
                         <div class="container flex center">
@@ -26,7 +26,7 @@
                     <div class="answer-wrapper">
                         <div class="container">
                             <div class="form-group">
-                                <input type="text" name="Name" placeholder="Введіть ваше ім’я або нікнейм" class="form-control" id="el-1731">
+                                <input type="text" name="Name" placeholder="Введіть ваше ім’я або нікнейм" class="form-control text" id="el-1731">
                                 <label for="el-1731"></label>
                             </div>
                         </div>
@@ -299,7 +299,7 @@
                 <div class="container flex center just-btwn">
                     <img src="assets/img/svg/arrow-back.svg" alt="Arrow back" class="arrow-back-img">
                     <div class="btn-wrapper flex center">
-                        <button class="btn btn-next flex center just-center">
+                        <button class="btn btn-next flex center just-center" disabled>
                             Наступне питання 
                             <img src="assets/img/svg/arrow-next.svg" alt="Arrow next" class="arrow-next-img">
                         </button>
