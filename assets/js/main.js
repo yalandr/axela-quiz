@@ -11,10 +11,6 @@ let index = 0;
 let questionsPassed = 0;
 let inputValidated = false;
 
-let inputText = document.querySelectorAll('.form-control.text');
-let inputRadio = document.querySelectorAll('.form-control.radio');
-let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
-
 // BUTTON ABILITY
 const btnAble = () => {
     btnNext.style.opacity = '1';
@@ -28,6 +24,8 @@ const btnDisable = () => {
 }
 
 // TEXT INPUT VALIDATION
+let inputText = document.querySelectorAll('.form-control.text');
+
 inputText.forEach((el) => {
     el.addEventListener('input', () => {
         console.log(el.value);
@@ -44,6 +42,8 @@ inputText.forEach((el) => {
 });
 
 // INPUT RADIO
+let inputRadio = document.querySelectorAll('.form-control.radio');
+
 inputRadio.forEach((el) => {
     el.addEventListener('change', () => {
         console.log(el.value);
@@ -52,12 +52,44 @@ inputRadio.forEach((el) => {
 })
 
 // INPUT CHECKBOX
+let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
+
 inputCheckbox.forEach((el) => {
     el.addEventListener('change', () => {
         console.log(el.value);
         btnAble();
     })
 })
+
+// ADVERTISERS ADDING
+const inputAdvertiser = document.querySelector('.form-control.text.advertiser');
+const addedItemsList = document.querySelector('.added-items-list');
+const addBtn = document.querySelector('.add-btn');
+
+const addAdvertiserItem = (advertiserName) => {
+    let advertiserItem  = ` 
+        <div class="added-list-item">
+            ${advertiserName}
+        </div>
+        ` 
+    addedItemsList.innerHTML += advertiserItem;
+
+}
+
+addBtn.addEventListener('click', (e)=> {
+    e.preventDefault();
+    let advertiserName = inputAdvertiser.value;
+    advertiserName = advertiserName.trim();
+    if (advertiserName == '') {
+        return false;
+    } else {
+        console.log(advertiserName);
+        addAdvertiserItem(advertiserName);
+        inputAdvertiser.value = '';
+        // updateTodo()
+    }
+})
+
 
 // QUESTION SWITCH
 const questionSwitch = () => {
