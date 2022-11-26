@@ -28,7 +28,6 @@ let inputText = document.querySelectorAll('.form-control.text');
 
 inputText.forEach((el) => {
     el.addEventListener('input', () => {
-        console.log(el.value.trim());
         if (el.value.trim().length > 0 && el.value.trim() !== ' ') {
             inputValidated = true;
             el.classList.add('valid');
@@ -82,10 +81,8 @@ addBtn.addEventListener('click', (e)=> {
     if (advertiserName == '') {
         return false;
     } else {
-        console.log(advertiserName);
         addAdvertiserItem(advertiserName);
         inputAdvertiser.value = '';
-        inputAdvertiser.focus();
     }
 })
 
@@ -119,7 +116,6 @@ const questionSwitch = () => {
         arrowBack.style.opacity = '1';
         index++;
         questionsPassed++;
-        console.log(questionsPassed);
         progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
         progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
         document.querySelectorAll('.question-number').forEach((elem) => {
