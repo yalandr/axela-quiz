@@ -99,6 +99,12 @@ let mainForm = document.querySelector('#mainForm');
 let quizArray = [];
 let quizObj = {};
 
+const hiddenInput = document.createElement('input');
+hiddenInput.className = 'hidden-input-for-quiz valid';
+hiddenInput.name = 'quiz_data';
+hiddenInput.type = 'hidden';
+mainForm.appendChild(hiddenInput);
+
 mainForm.onchange = (event) => {
     let question = event.target.name;
     let answer = event.target.value;
@@ -112,7 +118,7 @@ mainForm.onchange = (event) => {
 
     console.table(quizObj);
     sessionStorage.setItem('axela-quiz', JSON.stringify(quizObj));
-    // newInput.value = sessionStorage.getItem('quiz');
+    hiddenInput.value = sessionStorage.getItem('axela-quiz');
 };
 
 
