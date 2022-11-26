@@ -86,7 +86,7 @@ addBtn.addEventListener('click', (e)=> {
     }
 })
 
-// QUIZ LOGIC
+// DATA RECORDING
 let mainForm = document.querySelector('#mainForm');
 let quizArray = [];
 let quizObj = {};
@@ -143,7 +143,16 @@ const questionBack = () => {
 
 btnNext.addEventListener('click', (e) => {
     e.preventDefault();
-    questionSwitch();
+    if (questionsPassed+1 !== quizStep.length) {
+        questionSwitch();
+    } else if (questionsPassed+1 === quizStep.length) {
+        btnNext.innerText = 'Завершити';
+        progressBarLine.style.width = '100%';
+        progressPercentage.innerText = '100%';
+        btnNext.onclick = () => {
+            window.location = "thankyou.html";
+        }
+    }
 })
 
 // QUESTION SWITCH ON ENTER KEY
@@ -152,7 +161,6 @@ document.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
           event.preventDefault();
           questionSwitch();
-        //   dataGetting();
         }
     }
 });
