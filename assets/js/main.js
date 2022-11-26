@@ -3,6 +3,7 @@ const quizStep = document.querySelectorAll('.quiz-step');
 const arrowBack = document.querySelector('.arrow-back-img');
 const progressBarLine = document.querySelector('.progress-bar-line');
 const progressPercentage = document.querySelector('.progress-percentage');
+const additionInput = document.querySelector('.addition-input-wrapper');
 
 document.querySelector('.question-number').innerText = '1.';
 
@@ -11,17 +12,22 @@ let questionsPassed = 0;
 let inputValidated = false;
 
 let inputText = document.querySelectorAll('.form-control.text');
+let inputRadio = document.querySelectorAll('.form-control.radio');
+let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
 
+// BUTTON ABILITY
 const btnAble = () => {
     btnNext.style.opacity = '1';
     btnNext.removeAttribute('disabled');
 }
 
+// BUTTON DISABILITY
 const btnDisable = () => {
     btnNext.style.opacity = '0.5';
     btnNext.setAttribute("disabled", "");
 }
 
+// TEXT INPUT VALIDATION
 inputText.forEach((el) => {
     el.addEventListener('input', () => {
         console.log(el.value);
@@ -35,12 +41,25 @@ inputText.forEach((el) => {
             btnDisable();
         }
     });
+});
+
+// INPUT RADIO
+inputRadio.forEach((el) => {
+    el.addEventListener('change', () => {
+        console.log(el.value);
+        additionInput.style.display = "block";
+    })
 })
 
-if (1) {
-    inputValidated = true;
-}
+// INPUT CHECKBOX
+inputCheckbox.forEach((el) => {
+    el.addEventListener('change', () => {
+        console.log(el.value);
+        btnAble();
+    })
+})
 
+// QUESTION SWITCH
 const questionSwitch = () => {
     if (questionsPassed+1 < quizStep.length) {
         quizStep.item(index).classList.remove('active');
@@ -55,11 +74,13 @@ const questionSwitch = () => {
             elem.innerText = `${questionsPassed + 1}.`;
         });
         btnDisable();
+        inputValidated = false;
     } else {
         return false;
     }
 }
 
+// QUESTION BACK
 const questionBack = () => {
     quizStep.item(index).classList.remove('active');
     quizStep.item(index-1).classList.add('active');
@@ -77,11 +98,14 @@ btnNext.addEventListener('click', (e) => {
     questionSwitch();
 })
 
+// QUESTION SWITCH ON ENTER KEY
 document.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      questionSwitch();
-      dataGetting();
+    if (inputValidated === true) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          questionSwitch();
+        //   dataGetting();
+        }
     }
 });
 

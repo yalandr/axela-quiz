@@ -82,7 +82,7 @@ a {
     padding: 4rem 0 2rem 0;
     border-bottom: 1px solid #222222;
 }
-.question-wrapper .container .text {
+.question-wrapper .container .text-secondary {
     margin-left: auto;
 }
 .question-number {
@@ -261,7 +261,7 @@ a {
 
 /*==== ADDITION INPUT ================*/
 .addition-input-wrapper {
-    /* display: none; */
+    display: none;
     margin-top: 4rem;
 }
 .addition-input-heading {
