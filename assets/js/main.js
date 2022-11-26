@@ -1,3 +1,4 @@
+// VARIABLES ============================================================
 const btnNext = document.querySelector('.btn-next');
 const quizStep = document.querySelectorAll('.quiz-step');
 const arrowBack = document.querySelector('.arrow-back-img');
@@ -9,7 +10,9 @@ document.querySelector('.question-number').innerText = '1.';
 
 let index = 0;
 let questionsPassed = 0;
-let inputValidated = false;
+let isInputValidated = false;
+
+// FUNCTIONS ============================================================
 
 // BUTTON ABILITY
 const btnAble = () => {
@@ -29,11 +32,11 @@ let inputText = document.querySelectorAll('.form-control.text');
 inputText.forEach((el) => {
     el.addEventListener('input', () => {
         if (el.value.trim().length > 0 && el.value.trim() !== ' ') {
-            inputValidated = true;
+            isInputValidated = true;
             el.classList.add('valid');
             btnAble();
         } else {
-            inputValidated = false;
+            isInputValidated = false;
             el.classList.remove('valid');
             btnDisable();
         }
@@ -55,8 +58,13 @@ let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
 
 inputCheckbox.forEach((el) => {
     el.addEventListener('change', () => {
-        console.log(el.value);
-        btnAble();
+        if (el.checked) {
+            btnAble();
+            isInputValidated = true;
+        } else {
+            btnDisable();
+            isInputValidated = false;
+        }
     })
 })
 
@@ -83,6 +91,7 @@ addBtn.addEventListener('click', (e)=> {
     } else {
         addAdvertiserItem(advertiserName);
         inputAdvertiser.value = '';
+        isInputValidated = true;
     }
 })
 
@@ -122,9 +131,23 @@ const questionSwitch = () => {
             elem.innerText = `${questionsPassed + 1}.`;
         });
         btnDisable();
-        inputValidated = false;
+        isInputValidated = false;
     } else {
         return false;
+    }
+}
+
+// LAST QUESTION CHECKING
+const lastQuestionSwitch = () => {
+    if (questionsPassed+1 !== quizStep.length) {
+        questionSwitch();
+    } else if (questionsPassed+1 === quizStep.length) {
+        btnNext.innerText = 'Завершити';
+        progressBarLine.style.width = '100%';
+        progressPercentage.innerText = '100%';
+        btnNext.onclick = () => {
+            window.location = "thankyou.html";
+        };
     }
 }
 
@@ -141,30 +164,20 @@ const questionBack = () => {
     });
 }
 
+// BTN-NEXT CLICK
 btnNext.addEventListener('click', (e) => {
     e.preventDefault();
-    if (questionsPassed+1 !== quizStep.length) {
-        questionSwitch();
-    } else if (questionsPassed+1 === quizStep.length) {
-        btnNext.innerText = 'Завершити';
-        progressBarLine.style.width = '100%';
-        progressPercentage.innerText = '100%';
-        btnNext.onclick = () => {
-            window.location = "thankyou.html";
-        }
-    }
+    lastQuestionSwitch();
 })
 
 // QUESTION SWITCH ON ENTER KEY
 document.addEventListener("keypress", (event) => {
-    if (inputValidated === true) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          questionSwitch();
-        }
+    if (isInputValidated === true && event.key === "Enter") {
+        lastQuestionSwitch();
     }
 });
 
+// BTN-BACK CLICK
 arrowBack.addEventListener('click', (e) => {
     e.preventDefault();
     questionBack();
