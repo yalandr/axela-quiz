@@ -10,22 +10,32 @@ let index = 0;
 let questionsPassed = 0;
 let inputValidated = false;
 
-let inputText = document.querySelector('.form-control.text');
+let inputText = document.querySelectorAll('.form-control.text');
 
-inputText.addEventListener('input', () => {
-    console.log(inputText.value);
-    if (inputText.value.trim().length > 1) {
-        inputValidated = true;
-        inputText.classList.add('valid');
-        btnNext.style.opacity = '1';
-        btnNext.removeAttribute('disabled');
-    } else {
-        inputValidated = false;
-        inputText.classList.remove('valid');
-        btnNext.style.opacity = '0.5';
-        btnNext.setAttribute("disabled", "");
-    }
-});
+const btnAble = () => {
+    btnNext.style.opacity = '1';
+    btnNext.removeAttribute('disabled');
+}
+
+const btnDisable = () => {
+    btnNext.style.opacity = '0.5';
+    btnNext.setAttribute("disabled", "");
+}
+
+inputText.forEach((el) => {
+    el.addEventListener('input', () => {
+        console.log(el.value);
+        if (el.value.trim().length > 1) {
+            inputValidated = true;
+            el.classList.add('valid');
+            btnAble();
+        } else {
+            inputValidated = false;
+            el.classList.remove('valid');
+            btnDisable();
+        }
+    });
+})
 
 if (1) {
     inputValidated = true;
@@ -44,6 +54,7 @@ const questionSwitch = () => {
         document.querySelectorAll('.question-number').forEach((elem) => {
             elem.innerText = `${questionsPassed + 1}.`;
         });
+        btnDisable();
     } else {
         return false;
     }
