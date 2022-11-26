@@ -144,6 +144,7 @@ const lastQuestionSwitch = () => {
         btnNext.innerText = 'Завершити';
         progressBarLine.style.width = '100%';
         progressPercentage.innerText = '100%';
+        mainForm.style.opacity = '0.4';
         btnNext.onclick = () => {
             window.location = "thankyou.html";
         };
