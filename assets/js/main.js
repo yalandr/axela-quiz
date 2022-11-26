@@ -80,7 +80,7 @@ inputCheckbox.forEach((el) => {
             btnAble();
             isInputValidated = true;
         } else {
-
+            isInputValidated = false;
         }
     })
 })
@@ -113,7 +113,7 @@ addBtn.addEventListener('click', (e)=> {
 })
 
 // DATA RECORDING
-let mainForm = document.querySelector('#mainForm');
+const mainForm = document.querySelector('#mainForm');
 let quizArray = [];
 let quizObj = {};
 
@@ -162,6 +162,27 @@ const questionSwitch = () => {
     }
 }
 
+// FORM SENDING
+async function formSend() {
+
+    let formData = new FormData(mainForm);
+
+    if (isInputValidated === true) {
+        let response = await fetch('send.php', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            console.log('form send!');
+            mainForm.reset();
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 // LAST QUESTION CHECKING
 const lastQuestionSwitch = () => {
     if (questionsPassed+1 !== quizStep.length) {
@@ -172,6 +193,7 @@ const lastQuestionSwitch = () => {
         progressPercentage.innerText = '100%';
         mainForm.style.opacity = '0.4';
         btnNext.onclick = () => {
+            formSend();
             window.location = "thankyou.html";
         };
     }
