@@ -110,7 +110,9 @@ mainForm.onchange = (event) => {
     let answer = event.target.value;
     let objectItem = `${question} - ${answer}`;
     quizArray.push(objectItem);
-    quizObj = quizArray.reduce((acc, cur, i) => {
+    const newSet = new Set(quizArray);
+    const uniqueQuizArray = Array.from(newSet);
+    quizObj = uniqueQuizArray.reduce((acc, cur, i) => {
         i =  `${i + 1}`;
         acc[i] = cur;
         return acc;
