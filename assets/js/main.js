@@ -89,6 +89,27 @@ addBtn.addEventListener('click', (e)=> {
     }
 })
 
+// QUIZ LOGIC
+let mainForm = document.querySelector('#mainForm');
+let quizArray = [];
+let quizObj = {};
+
+mainForm.onchange = (event) => {
+    let question = event.target.name;
+    let answer = event.target.value;
+    let objectItem = `${question} - ${answer}`;
+    quizArray.push(objectItem);
+    quizObj = quizArray.reduce((acc, cur, i) => {
+        i =  `${i + 1}`;
+        acc[i] = cur;
+        return acc;
+    }, {});
+
+    console.table(quizObj);
+    sessionStorage.setItem('quiz', JSON.stringify(quizObj));
+    // newInput.value = sessionStorage.getItem('quiz');
+};
+
 
 // QUESTION SWITCH
 const questionSwitch = () => {
