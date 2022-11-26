@@ -62,8 +62,7 @@ inputCheckbox.forEach((el) => {
             btnAble();
             isInputValidated = true;
         } else {
-            btnDisable();
-            isInputValidated = false;
+
         }
     })
 })
@@ -112,7 +111,7 @@ mainForm.onchange = (event) => {
     }, {});
 
     console.table(quizObj);
-    sessionStorage.setItem('quiz', JSON.stringify(quizObj));
+    sessionStorage.setItem('axela-quiz', JSON.stringify(quizObj));
     // newInput.value = sessionStorage.getItem('quiz');
 };
 
