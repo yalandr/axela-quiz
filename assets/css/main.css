@@ -17,7 +17,8 @@ html {
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: var(--font-primary), serif;
     font-size: 1rem;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
@@ -278,9 +279,6 @@ a {
     font-weight: 300;
     cursor: pointer;
     border: none;
-}
-.add-btn:active {
-    transform: scale(0.98);
 }
 
 /*==== ADDITION INPUT ================*/
