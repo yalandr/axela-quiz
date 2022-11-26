@@ -258,6 +258,26 @@ a {
     background-repeat: no-repeat;
     background-position: 99% 50%;
 }
+.form-group {
+    position: relative;
+}
+.form-control.text.advertiser {
+    background-image: none !important;
+}
+.add-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1%;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: rgb(46, 169, 58);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+}
 
 /*==== ADDITION INPUT ================*/
 .addition-input-wrapper {

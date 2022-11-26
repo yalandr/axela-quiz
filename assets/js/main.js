@@ -28,8 +28,8 @@ let inputText = document.querySelectorAll('.form-control.text');
 
 inputText.forEach((el) => {
     el.addEventListener('input', () => {
-        console.log(el.value);
-        if (el.value.trim().length > 1) {
+        console.log(el.value.trim());
+        if (el.value.trim().length > 0 && el.value.trim() !== ' ') {
             inputValidated = true;
             el.classList.add('valid');
             btnAble();
@@ -73,7 +73,6 @@ const addAdvertiserItem = (advertiserName) => {
         </div>
         ` 
     addedItemsList.innerHTML += advertiserItem;
-
 }
 
 addBtn.addEventListener('click', (e)=> {
@@ -86,7 +85,7 @@ addBtn.addEventListener('click', (e)=> {
         console.log(advertiserName);
         addAdvertiserItem(advertiserName);
         inputAdvertiser.value = '';
-        // updateTodo()
+        inputAdvertiser.focus();
     }
 })
 
