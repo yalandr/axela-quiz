@@ -76,11 +76,22 @@ a {
 .main {
     flex: 1;
 }
+.main-form {
+    position: relative;
+}
 .quiz-step {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: -5;
+    transition: .2s;
 }
 .quiz-step.active {
-    display: flex;
+    opacity: 1;
+    z-index: 2;
 }
 .question-wrapper {
     padding: 4rem 0 2rem 0;

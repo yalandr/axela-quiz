@@ -196,6 +196,7 @@ async function formSend() {
         if (response.ok) {
             console.log('form send!');
             mainForm.reset();
+            window.location = "thankyou.html";
         } else {
             showModal('Something went wrong');
             mainForm.reset();
@@ -214,10 +215,9 @@ const lastQuestionSwitch = () => {
         progressBarLine.style.width = '100%';
         progressPercentage.innerText = '100%';
         mainForm.style.opacity = '0.25';
-        
+
         btnNext.onclick = () => {
             formSend();
-            window.location = "thankyou.html";
         };
     }
 }
