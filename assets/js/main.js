@@ -92,9 +92,9 @@ const addBtn = document.querySelector('.add-btn');
 
 const addAdvertiserItem = (advertiserName) => {
     let advertiserItem  = ` 
-        <div class="added-list-item">
+        <li class="added-list-item">
             ${advertiserName}
-        </div>
+        </li>
         ` 
     addedItemsList.innerHTML += advertiserItem;
 }
@@ -191,7 +191,7 @@ const lastQuestionSwitch = () => {
         btnNext.innerText = 'Завершити';
         progressBarLine.style.width = '100%';
         progressPercentage.innerText = '100%';
-        mainForm.style.opacity = '0.4';
+        mainForm.style.opacity = '0.25';
         btnNext.onclick = () => {
             formSend();
             window.location = "thankyou.html";
