@@ -2,15 +2,17 @@
 
 ini_set("default_charset", 'utf-8');
 date_default_timezone_set('Europe/Kiev');
+
 $post = !empty($_POST);
+
 if ($post) {
     $quiz_data = $_POST['quiz_data'];
 
-    $sub = "Quiz Data";
+    $sub = "Опитування партнерiв";
     $error = '';
 
     if (!$quiz_data) {
-        $error .= 'Вкажiть data. ';
+        $error .= 'Вкажiть данi. ';
     }
 
     if (!$error) {
@@ -27,6 +29,5 @@ if ($post) {
         echo $error;
     }
 }
-
 
 ?>

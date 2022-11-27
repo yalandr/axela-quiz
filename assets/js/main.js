@@ -127,9 +127,12 @@ mainForm.onchange = (event) => {
     let question = event.target.name;
     let answer = event.target.value;
     let objectItem = `${question} - ${answer}`;
+    
     quizArray.push(objectItem);
+    
     const newSet = new Set(quizArray);
     const uniqueQuizArray = Array.from(newSet);
+    
     quizObj = uniqueQuizArray.reduce((acc, cur, i) => {
         i =  `${i + 1}`;
         acc[i] = cur;
@@ -162,6 +165,24 @@ const questionSwitch = () => {
     }
 }
 
+// MODAL
+const messageModal = document.querySelector('.message-modal');
+const messageModalContent = document.querySelector('.message-modal-content');
+const messageText = document.querySelector('.message-text');
+
+const showModal = (message) => {
+    messageModal.classList.add('active');
+    messageText.innerText = message;
+}
+
+const closeModal = () => {
+    messageModal.classList.remove('active');
+}
+
+messageModalContent.addEventListener('click', (event) => {
+    event.stopPropagation();
+})
+
 // FORM SENDING
 async function formSend() {
 
@@ -176,7 +197,8 @@ async function formSend() {
             console.log('form send!');
             mainForm.reset();
         } else {
-            return false;
+            showModal('Something went wrong');
+            mainForm.reset();
         }
     } else {
         return false;
@@ -192,6 +214,7 @@ const lastQuestionSwitch = () => {
         progressBarLine.style.width = '100%';
         progressPercentage.innerText = '100%';
         mainForm.style.opacity = '0.25';
+        
         btnNext.onclick = () => {
             formSend();
             window.location = "thankyou.html";
@@ -201,15 +224,22 @@ const lastQuestionSwitch = () => {
 
 // QUESTION BACK
 const questionBack = () => {
-    quizStep.item(index).classList.remove('active');
-    quizStep.item(index-1).classList.add('active');
-    index--;
-    questionsPassed--;
-    progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
-    progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
-    document.querySelectorAll('.question-number').forEach((elem) => {
-        elem.innerText = `${questionsPassed + 1}.`;
-    });
+    if (questionsPassed > 0) {
+        mainForm.style.opacity = '1';
+        quizStep.item(index).classList.remove('active');
+        quizStep.item(index-1).classList.add('active');
+        index--;
+        questionsPassed--;
+        progressBarLine.style.width = 100 / quizStep.length * questionsPassed + '%';
+        progressPercentage.innerText = Math.ceil(100 / quizStep.length * questionsPassed) + '%';
+        document.querySelectorAll('.question-number').forEach((elem) => {
+            elem.innerText = `${questionsPassed + 1}.`;
+        });
+    } else if (questionsPassed === 0) {
+        arrowBack.style.opacity = '0';
+    } else {
+        return false;
+    }
 }
 
 // BTN-NEXT CLICK
