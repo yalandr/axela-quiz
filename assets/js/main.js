@@ -6,6 +6,9 @@ const progressBarLine = document.querySelector('.progress-bar-line');
 const progressPercentage = document.querySelector('.progress-percentage');
 const additionInput = document.querySelector('.addition-input-wrapper');
 
+const gSheetLink = 'https://docs.google.com/spreadsheets/d/1g4xKaN2DU_bShQ5dQ6vxP9rVAthoD7puEpLx6TwVTtE/edit?usp=sharing';
+const sheetBestLink = 'https://sheet.best/api/sheets/8234265b-c551-4966-b15f-11cd3594d596';
+
 document.querySelector('.question-number').innerText = '1.';
 
 let index = 0;
@@ -113,6 +116,7 @@ addBtn.addEventListener('click', (e)=> {
 })
 
 // DATA RECORDING
+
 const mainForm = document.querySelector('#mainForm');
 let quizArray = [];
 let quizObj = {};
@@ -125,7 +129,7 @@ mainForm.appendChild(hiddenInput);
 
 mainForm.onchange = (event) => {
     let question = event.target.name;
-    let answer = event.target.value;
+    let answer = event.target.value.trim();
     let objectItem = `${question} - ${answer}`;
     
     quizArray.push(objectItem);
@@ -140,10 +144,10 @@ mainForm.onchange = (event) => {
     }, {});
 
     console.table(quizObj);
+
     sessionStorage.setItem('axela-quiz', JSON.stringify(quizObj));
     hiddenInput.value = sessionStorage.getItem('axela-quiz');
 };
-
 
 // QUESTION SWITCH
 const questionSwitch = () => {
@@ -183,26 +187,41 @@ messageModalContent.addEventListener('click', (event) => {
     event.stopPropagation();
 })
 
-// FORM SENDING
-async function formSend() {
+// DATA SENDING
+const handleSubmit = () => {
+    let formData = sessionStorage.getItem('axela-quiz');
 
-    let formData = new FormData(mainForm);
+    let currentDate = new Date().getDate();
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let currentHour = new Date().getHours();
+    let currentMinute = new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes();
+
+    let currentTime = currentDate + "." + currentMonth + "." + currentYear + " " + currentHour + ":" + currentMinute;
+
+
+    let formObjectString = {
+        Date: currentTime,
+        Name: 'Name',
+        Connection: 'Connection',
+        Login: 'Login',
+        Traffic: 'Traffic',
+        Vertical: 'Vertical',
+        Advertiser: 'Advertiser',
+        Team: 'Team'
+    }
 
     if (isInputValidated === true) {
-        let response = await fetch('send.php', {
-            method: 'POST',
-            body: formData
-        });
-        if (response.ok) {
-            console.log('form send!');
-            mainForm.reset();
-            window.location = "thankyou.html";
-        } else {
-            showModal('Something went wrong');
-            mainForm.reset();
-        }
+        axios.post(sheetBestLink, formObjectString)
+            .then((response) => {
+                console.log(response.config.data);
+                console.log(formObjectString);
+                mainForm.reset();
+            });
+        mainForm.reset();
     } else {
-        return false;
+        showModal('Something went wrong');
+        mainForm.reset();
     }
 }
 
@@ -217,7 +236,7 @@ const lastQuestionSwitch = () => {
         mainForm.style.opacity = '0.25';
 
         btnNext.onclick = () => {
-            formSend();
+            handleSubmit();
         };
     }
 }
