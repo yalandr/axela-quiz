@@ -91,7 +91,7 @@ inputCheckbox.forEach((el) => {
 })
 
 // ADVERTISERS ADDING
-const inputAdvertiser = document.querySelector('.form-control.text.adv-input');
+const inputAdvertiser = document.querySelector('.form-control.adv-input');
 const addedItemsList = document.querySelector('.added-items-list');
 const addBtn = document.querySelector('.add-btn');
 let advertisersArray = [];
@@ -116,6 +116,7 @@ addBtn.addEventListener('click', (e)=> {
         advertisersArray.push(inputAdvertiser.value);
         inputAdvertiser.value = '';
         isInputValidated = true;
+        btnAble();
     }
 })
 

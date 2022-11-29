@@ -110,7 +110,8 @@ a {
 
 /*==== INPUT-TEXT ===========================*/
 .form-control.text,
-.form-control.email {
+.form-control.email,
+.form-control.adv-input {
     width: 100%;
     height: 4rem;
     padding: 0 1.5rem;
@@ -125,15 +126,18 @@ a {
     position: relative;
 }
 .form-control.text::placeholder,
-.form-control.email::placeholder {
+.form-control.email::placeholder,
+.form-control.adv-input::placeholder {
     color: #7D7D7D;
 }
 .form-control.text:focus,
-.form-control.email:focus {
+.form-control.email:focus,
+.form-control.adv-input:focus {
     border: 1px solid #F19422;
 }
 .form-control.text.valid,
-.form-control.email.valid {
+.form-control.email.valid,
+.form-control.adv-input.valid {
     border: 1px solid #F19422;
     background-image: url(../img/svg/checked-orange.svg);
     background-size: 1.5rem;
@@ -423,6 +427,7 @@ a {
     #FBB564 6px,
     #FBB564 12px
     );
+    transition: all ease .3s;
 }
 
 
