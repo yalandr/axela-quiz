@@ -303,7 +303,11 @@ a {
     margin-left: 1rem;
 }
 
-
+/*==== NUMBER INPUT =======================*/
+.form-control.text.number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    opacity: 0;
+}
 
 /*==== CONTROL-PANEL ======================*/
 .control-panel {
