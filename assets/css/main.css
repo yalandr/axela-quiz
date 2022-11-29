@@ -352,6 +352,29 @@ a {
     font-weight: 800;
     color: #8A8A8A;
 }
+.control-panel .container {
+    position: relative;
+}
+.notification {
+    position: absolute;
+    right: 12%;
+    top: -290%;
+    text-align: right;
+    font-size: 1.2rem;
+    opacity: 0;
+    z-index: -3;
+    transition: .3s;
+}
+.arrow-down {
+    display: block;
+    width: 2.5rem;
+    margin-top: 1rem;
+    float: right;
+}
+.notification.active {
+    opacity: 1;
+    z-index: 3;
+}
 
 
 /*==== FOOTER =====================*/
@@ -539,7 +562,11 @@ a {
 }
 
 @media (max-width: 992px) {
-    
+    .notification {
+        right: 2%;
+        top: -300%;
+        font-size: 1.4rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -645,6 +672,17 @@ a {
         height: 1.5rem;
         font-size: 1.2rem;
         right: 3%;
+    }
+    .notification {
+        right: 2%;
+        top: -310%;
+        font-size: 1.1rem;
+    }
+    .arrow-down {
+        display: block;
+        width: 2rem;
+        margin-top: 1rem;
+        float: right;
     }
     .thankyou-heading {
         font-size: 2.5rem;

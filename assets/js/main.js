@@ -5,15 +5,18 @@ const arrowBack = document.querySelector('.arrow-back-img');
 const progressBarLine = document.querySelector('.progress-bar-line');
 const progressPercentage = document.querySelector('.progress-percentage');
 const additionInput = document.querySelector('.addition-input-wrapper');
-
-const gSheetLink = 'https://docs.google.com/spreadsheets/d/1g4xKaN2DU_bShQ5dQ6vxP9rVAthoD7puEpLx6TwVTtE/edit?usp=sharing';
-const sheetBestLink = 'https://sheet.best/api/sheets/8234265b-c551-4966-b15f-11cd3594d596';
+const notification = document.querySelector('.notification');
 
 document.querySelector('.question-number').innerText = '1.';
 
 let index = 0;
 let questionsPassed = 0;
 let isInputValidated = false;
+
+// CONFIGURATIONAL VARIABLES ============================================
+const gSheetLink = 'https://docs.google.com/spreadsheets/d/1g4xKaN2DU_bShQ5dQ6vxP9rVAthoD7puEpLx6TwVTtE/edit?usp=sharing';
+const sheetBestLink = 'https://sheet.best/api/sheets/8234265b-c551-4966-b15f-11cd3594d596';
+let siteBase = "/";
 
 // FUNCTIONS ============================================================
 
@@ -77,8 +80,6 @@ inputRadio.forEach((el) => {
 // INPUT CHECKBOX
 let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
 
-let checkedCheckboxes = [];
-
 inputCheckbox.forEach((el) => {
     el.addEventListener('change', () => {
         if (el.checked) {
@@ -94,6 +95,7 @@ inputCheckbox.forEach((el) => {
 const inputAdvertiser = document.querySelector('.form-control.text.advertiser');
 const addedItemsList = document.querySelector('.added-items-list');
 const addBtn = document.querySelector('.add-btn');
+let advertisersArray = [];
 
 const addAdvertiserItem = (advertiserName) => {
     let advertiserItem  = ` 
@@ -112,6 +114,7 @@ addBtn.addEventListener('click', (e)=> {
         return false;
     } else {
         addAdvertiserItem(advertiserName);
+        advertisersArray.push(inputAdvertiser.value);
         inputAdvertiser.value = '';
         isInputValidated = true;
     }
@@ -119,7 +122,6 @@ addBtn.addEventListener('click', (e)=> {
 
 // DATA RECORDING
 const mainForm = document.querySelector('#mainForm');
-let quizArray = [];
 let quizObj = {};
 
 mainForm.onchange = (event) => {
@@ -127,17 +129,24 @@ mainForm.onchange = (event) => {
     let answer = event.target.value.trim();
     quizObj[question] = answer;
 
-    console.log(event.target);
-
     if (event.target.type === "checkbox") {
-        if (event.target.checked === true) {
-            
+
+        quizObj.Traffic = [];
+        for (let i = 0; i < inputCheckbox.length; i++) {
+            if (inputCheckbox[i].checked && inputCheckbox[i].name === 'Traffic') {
+                quizObj.Traffic.push(inputCheckbox[i].value);
+            }
+        }
+        
+        quizObj.Vertical = [];
+        for (let i = 0; i < inputCheckbox.length; i++) {
+            if (inputCheckbox[i].checked && inputCheckbox[i].name === 'Vertical') {
+                quizObj.Vertical.push(inputCheckbox[i].value);
+            }
         }
     }
 
-    // if (quizObj.hasOwnProperty(question)) {
-    //     quizObj[question] = answer + ", " + answer;
-    // }
+    quizObj.Advertiser = advertisersArray;
 
     console.table(quizObj);
 };
@@ -198,9 +207,9 @@ const handleSubmit = () => {
         Connection: quizObj.Connection,
         Login: quizObj.Login,
         Email: quizObj.Email,
-        Traffic: quizObj.Traffic,
-        Vertical: quizObj.Vertical,
-        Advertiser: quizObj.Advertiser,
+        Traffic: quizObj.Traffic.join(', '),
+        Vertical: quizObj.Vertical.join(', '),
+        Advertiser: quizObj.Advertiser.join(', '),
         Team: quizObj.Team
     }
 
@@ -211,8 +220,8 @@ const handleSubmit = () => {
                 console.log(formObjectString);
             });
         mainForm.reset();
+        notification.classList.remove('active');
         showModal(`
-            <img src="assets/img/png/cancel.png" alt="Close" class="close-img" onclick="closeModal()">
             <h2 class="thankyou-heading">
                 Дякуємо!
             </h2>
@@ -225,9 +234,8 @@ const handleSubmit = () => {
         `);
     } else {
         showModal(`
-            <img src="assets/img/png/cancel.png" alt="Close" class="close-img" onclick="closeModal()">
             <p class="message-text">Упс... Щось пiшло не так</p>
-            <a href="/" class="btn btn-link">
+            <a href=${siteBase} class="btn btn-link">
                 Оновити сторiнку
             </a>
         `);
@@ -244,7 +252,7 @@ const lastQuestionSwitch = () => {
         progressBarLine.style.width = '100%';
         progressPercentage.innerText = '100%';
         mainForm.style.opacity = '0.25';
-
+        notification.classList.add('active');
         btnNext.onclick = () => {
             handleSubmit();
         };
@@ -268,7 +276,7 @@ const questionBack = () => {
             Наступне питання 
             <img src="assets/img/svg/arrow-next.svg" alt="Arrow next" class="arrow-next-img">
         `;
-        btnNext.removeEventListener('click');
+        notification.classList.remove('active');
     } else if (questionsPassed === 0) {
         arrowBack.style.opacity = '0';
     } else {
