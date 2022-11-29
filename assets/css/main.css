@@ -207,6 +207,7 @@ a {
     -moz-appearance: none;
     -o-appearance: none;
     appearance: none;
+    opacity: 0;
 }
 .form-group.checkbox label {
     display: flex;

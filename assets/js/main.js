@@ -188,14 +188,16 @@ messageModalContent.addEventListener('click', (event) => {
 
 // CURRENT TIME
 let currentDate = new Date().getDate();
-    let currentMonth = new Date().getMonth();
-    let currentYear = new Date().getFullYear();
-    let currentHour = new Date().getHours() < 10 ? "0" + new Date().getHours() : new Date().getHours();
-    let currentMinute = new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes();
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+let currentHour = new Date().getHours() < 10 ? "0" + new Date().getHours() : new Date().getHours();
+let currentMinute = new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes();
 
-    let currentTime = currentDate + "." + currentMonth + "." + currentYear + " " + currentHour + ":" + currentMinute;
+let currentTime = currentDate + "." + currentMonth + "." + currentYear + " " + currentHour + ":" + currentMinute;
 
 // DATA SENDING
+let isFormSubmitted = false;
+
 const handleSubmit = () => {
 
     let formObjectString = {
@@ -210,13 +212,11 @@ const handleSubmit = () => {
         Team: quizObj.Team
     }
 
-    if (isInputValidated === true) {
-        axios.post(sheetBestLink, formObjectString)
-            .then((response) => {
-                console.log(response.config.data);
-            });
+    if (isInputValidated === true && isFormSubmitted === false) {
+        axios.post(sheetBestLink, formObjectString);
         mainForm.reset();
         notification.classList.remove('active');
+        isFormSubmitted = true;
         showModal(`
             <h2 class="thankyou-heading">
                 Дякуємо!
@@ -230,7 +230,9 @@ const handleSubmit = () => {
         `);
     } else {
         showModal(`
-            <p class="message-text">Упс... Щось пiшло не так</p>
+            <p class="message-text">
+                Здається, ми вже отримали ваші відповіді, дякуємо :)
+            </p>
             <a href=${siteBase} class="btn btn-link">
                 Оновити сторiнку
             </a>
@@ -241,6 +243,7 @@ const handleSubmit = () => {
 
 // LAST QUESTION CHECKING
 const lastQuestionSwitch = () => {
+
     if (questionsPassed+1 !== quizStep.length) {
         questionSwitch();
     } else if (questionsPassed+1 === quizStep.length) {
@@ -251,6 +254,7 @@ const lastQuestionSwitch = () => {
         notification.classList.add('active');
         btnNext.onclick = () => {
             handleSubmit();
+            isFormSubmitted === true;
         };
     }
 }
