@@ -72,7 +72,6 @@ let inputRadio = document.querySelectorAll('.form-control.radio');
 
 inputRadio.forEach((el) => {
     el.addEventListener('change', () => {
-        console.log(el.value);
         additionInput.style.display = "block";
     })
 })
@@ -147,8 +146,6 @@ mainForm.onchange = (event) => {
     }
 
     quizObj.Advertiser = advertisersArray;
-
-    console.table(quizObj);
 };
 
 // QUESTION SWITCH
@@ -217,7 +214,6 @@ const handleSubmit = () => {
         axios.post(sheetBestLink, formObjectString)
             .then((response) => {
                 console.log(response.config.data);
-                console.log(formObjectString);
             });
         mainForm.reset();
         notification.classList.remove('active');
