@@ -77,6 +77,8 @@ inputRadio.forEach((el) => {
 // INPUT CHECKBOX
 let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
 
+let checkedCheckboxes = [];
+
 inputCheckbox.forEach((el) => {
     el.addEventListener('change', () => {
         if (el.checked) {
@@ -116,37 +118,28 @@ addBtn.addEventListener('click', (e)=> {
 })
 
 // DATA RECORDING
-
 const mainForm = document.querySelector('#mainForm');
 let quizArray = [];
 let quizObj = {};
 
-const hiddenInput = document.createElement('input');
-hiddenInput.className = 'hidden-input-for-quiz valid';
-hiddenInput.name = 'quiz_data';
-hiddenInput.type = 'hidden';
-mainForm.appendChild(hiddenInput);
-
 mainForm.onchange = (event) => {
     let question = event.target.name;
     let answer = event.target.value.trim();
-    let objectItem = `${question} - ${answer}`;
-    
-    quizArray.push(objectItem);
-    
-    const newSet = new Set(quizArray);
-    const uniqueQuizArray = Array.from(newSet);
-    
-    quizObj = uniqueQuizArray.reduce((acc, cur, i) => {
-        i =  `${i + 1}`;
-        acc[i] = cur;
-        return acc;
-    }, {});
+    quizObj[question] = answer;
+
+    console.log(event.target);
+
+    if (event.target.type === "checkbox") {
+        if (event.target.checked === true) {
+            
+        }
+    }
+
+    // if (quizObj.hasOwnProperty(question)) {
+    //     quizObj[question] = answer + ", " + answer;
+    // }
 
     console.table(quizObj);
-
-    sessionStorage.setItem('axela-quiz', JSON.stringify(quizObj));
-    hiddenInput.value = sessionStorage.getItem('axela-quiz');
 };
 
 // QUESTION SWITCH
@@ -172,43 +165,43 @@ const questionSwitch = () => {
 // MODAL
 const messageModal = document.querySelector('.message-modal');
 const messageModalContent = document.querySelector('.message-modal-content');
-const messageText = document.querySelector('.message-text');
 
-const showModal = (message) => {
+const showModal = (content) => {
     messageModal.classList.add('active');
-    messageText.innerText = message;
+    messageModalContent.innerHTML = content;
 }
 
 const closeModal = () => {
     messageModal.classList.remove('active');
+    messageModalContent.innerHTML = '';
 }
 
 messageModalContent.addEventListener('click', (event) => {
     event.stopPropagation();
 })
 
-// DATA SENDING
-const handleSubmit = () => {
-    let formData = sessionStorage.getItem('axela-quiz');
-
-    let currentDate = new Date().getDate();
+// CURRENT TIME
+let currentDate = new Date().getDate();
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-    let currentHour = new Date().getHours();
+    let currentHour = new Date().getHours() < 10 ? "0" + new Date().getHours() : new Date().getHours();
     let currentMinute = new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes();
 
     let currentTime = currentDate + "." + currentMonth + "." + currentYear + " " + currentHour + ":" + currentMinute;
 
+// DATA SENDING
+const handleSubmit = () => {
 
     let formObjectString = {
         Date: currentTime,
-        Name: 'Name',
-        Connection: 'Connection',
-        Login: 'Login',
-        Traffic: 'Traffic',
-        Vertical: 'Vertical',
-        Advertiser: 'Advertiser',
-        Team: 'Team'
+        Name: quizObj.Name,
+        Connection: quizObj.Connection,
+        Login: quizObj.Login,
+        Email: quizObj.Email,
+        Traffic: quizObj.Traffic,
+        Vertical: quizObj.Vertical,
+        Advertiser: quizObj.Advertiser,
+        Team: quizObj.Team
     }
 
     if (isInputValidated === true) {
@@ -216,11 +209,28 @@ const handleSubmit = () => {
             .then((response) => {
                 console.log(response.config.data);
                 console.log(formObjectString);
-                mainForm.reset();
             });
         mainForm.reset();
+        showModal(`
+            <img src="assets/img/png/cancel.png" alt="Close" class="close-img" onclick="closeModal()">
+            <h2 class="thankyou-heading">
+                Дякуємо!
+            </h2>
+            <p class="thankyou-text">
+                Ми отримали вашу заявку та зв’яжемося з вами найближчим часом
+            </p>
+            <a href="https://axela.network/" class="btn btn-link" target="_blank">
+                Перейти на сайт а́xela
+            </a>
+        `);
     } else {
-        showModal('Something went wrong');
+        showModal(`
+            <img src="assets/img/png/cancel.png" alt="Close" class="close-img" onclick="closeModal()">
+            <p class="message-text">Упс... Щось пiшло не так</p>
+            <a href="/" class="btn btn-link">
+                Оновити сторiнку
+            </a>
+        `);
         mainForm.reset();
     }
 }
@@ -230,7 +240,7 @@ const lastQuestionSwitch = () => {
     if (questionsPassed+1 !== quizStep.length) {
         questionSwitch();
     } else if (questionsPassed+1 === quizStep.length) {
-        btnNext.innerText = 'Завершити';
+        btnNext.innerHTML = `Завершити`;
         progressBarLine.style.width = '100%';
         progressPercentage.innerText = '100%';
         mainForm.style.opacity = '0.25';
@@ -254,6 +264,11 @@ const questionBack = () => {
         document.querySelectorAll('.question-number').forEach((elem) => {
             elem.innerText = `${questionsPassed + 1}.`;
         });
+        btnNext.innerHTML = `
+            Наступне питання 
+            <img src="assets/img/svg/arrow-next.svg" alt="Arrow next" class="arrow-next-img">
+        `;
+        btnNext.removeEventListener('click');
     } else if (questionsPassed === 0) {
         arrowBack.style.opacity = '0';
     } else {

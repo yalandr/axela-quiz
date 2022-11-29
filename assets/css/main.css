@@ -398,11 +398,7 @@ a {
 }
 
 
-/*==== THANKYOU PAGE =============*/
-.container.thankyou {
-    max-width: 660px;
-    text-align: center;
-}
+/*==== THANKYOU MODAL =============*/
 .thankyou-heading {
     font-weight: 800;
     font-size: 4rem;
@@ -416,7 +412,7 @@ a {
     color: #FFFFFF;
     margin: 1rem 0 3.5rem 0;
 }
-.container.thankyou .btn {
+.btn-link {
     margin: 0 auto;
     opacity: 1 !important
 }
@@ -449,6 +445,9 @@ a {
     padding: 2.5rem 1.5rem;
     border-radius: 8px;
     text-align: center;
+}
+.message-text {
+    margin-bottom: 2rem;
 }
 .close-img {
     position: absolute;
