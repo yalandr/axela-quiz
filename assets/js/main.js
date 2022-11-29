@@ -252,9 +252,9 @@ const lastQuestionSwitch = () => {
         progressPercentage.innerText = '100%';
         mainForm.style.opacity = '0.25';
         notification.classList.add('active');
-        btnNext.onclick = () => {
+        btnNext.addEventListener('click', (e) => {
             handleSubmit();
-        };
+        })
     }
 }
 
