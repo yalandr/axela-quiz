@@ -269,7 +269,7 @@ a {
 .form-group {
     position: relative;
 }
-.form-control.text.advertiser {
+.form-control.text.adv-input {
     background-image: none !important;
 }
 .add-btn {

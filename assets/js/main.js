@@ -91,7 +91,7 @@ inputCheckbox.forEach((el) => {
 })
 
 // ADVERTISERS ADDING
-const inputAdvertiser = document.querySelector('.form-control.text.advertiser');
+const inputAdvertiser = document.querySelector('.form-control.text.adv-input');
 const addedItemsList = document.querySelector('.added-items-list');
 const addBtn = document.querySelector('.add-btn');
 let advertisersArray = [];
