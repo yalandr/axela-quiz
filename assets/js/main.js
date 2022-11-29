@@ -254,7 +254,6 @@ const lastQuestionSwitch = () => {
         notification.classList.add('active');
         btnNext.onclick = () => {
             handleSubmit();
-            isFormSubmitted === true;
         };
     }
 }
