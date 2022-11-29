@@ -591,7 +591,8 @@ a {
     .answer-wrapper {
         padding: 2rem 0 2rem 0;
     }
-    .form-group input[type=text] {
+    .form-group input[type=text],
+    .form-group input[type=number] {
         height: 3rem;
         font-size: 0.875rem;
         padding: 0 1rem;
