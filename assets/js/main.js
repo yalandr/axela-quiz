@@ -79,16 +79,25 @@ inputRadio.forEach((el) => {
 // INPUT CHECKBOX
 let inputCheckbox = document.querySelectorAll('.form-control.checkbox');
 
+let inputCheckboxChecked = [];
+
 inputCheckbox.forEach((el) => {
     el.addEventListener('change', () => {
         if (el.checked) {
             btnAble();
             isInputValidated = true;
+            inputCheckboxChecked.push(el);
         } else {
-            isInputValidated = false;
+            inputCheckboxChecked.pop(el);
+            if (inputCheckboxChecked.length === 0) {
+                isInputValidated = false;
+                btnDisable();
+            }
         }
     })
 })
+
+
 
 // ADVERTISERS ADDING
 const inputAdvertiser = document.querySelector('.form-control.adv-input');
@@ -164,6 +173,7 @@ const questionSwitch = () => {
             elem.innerText = `${questionsPassed + 1}.`;
         });
         btnDisable();
+        inputCheckboxChecked = [];
         isInputValidated = false;
     } else {
         return false;

@@ -135,7 +135,7 @@ a {
 .form-control.email:focus,
 .form-control.adv-input:focus,
 .form-control.number:focus {
-    border: 1px solid #F19422;
+    border: 1px solid #F19422 !important;
 }
 .form-control.text.valid,
 .form-control.email.valid,
@@ -148,6 +148,7 @@ a {
 }
 .form-control.adv-input.valid {
     background-image: none !important;
+    border: 1px solid #404040;
 }
 
 
@@ -197,9 +198,6 @@ a {
     background-size: contain;
     background-position: center
 }
-
-
-
 
 /*==== INPUT-CHECKBOX ===============*/
 .form-group.checkbox {
@@ -523,10 +521,14 @@ a {
     .answer-wrapper {
         padding: 2.5rem 0 2rem 0;
     }
-    .form-group input[type=text] {
+    .form-group input[type=text],
+    .form-group input[type=email],
+    .form-group input[type=number] {
         height: 3.2rem;
     }
-    .form-group input[type=text].valid {
+    .form-group input[type=text].valid,
+    .form-group input[type=email].valid,
+    .form-group input[type=number].valid {
         background-size: 1.25rem;
     }
     .text-secondary {
@@ -617,6 +619,7 @@ a {
         padding: 2rem 0 2rem 0;
     }
     .form-group input[type=text],
+    .form-group input[type=email],
     .form-group input[type=number] {
         height: 3rem;
         font-size: 0.875rem;
