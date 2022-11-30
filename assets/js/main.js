@@ -14,8 +14,7 @@ let questionsPassed = 0;
 let isInputValidated = false;
 
 // CONFIGURATIONAL VARIABLES ============================================
-const gSheetLink = 'https://docs.google.com/spreadsheets/d/1g4xKaN2DU_bShQ5dQ6vxP9rVAthoD7puEpLx6TwVTtE/edit?usp=sharing';
-const sheetBestLink = 'https://sheet.best/api/sheets/8234265b-c551-4966-b15f-11cd3594d596';
+const sheetBestLink = 'https://sheet.best/api/sheets/99355b8f-b293-4c9a-9508-3aad59f0efac';
 let siteBase = "/";
 
 // FUNCTIONS ============================================================
