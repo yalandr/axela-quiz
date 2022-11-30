@@ -94,6 +94,7 @@ inputCheckbox.forEach((el) => {
 const inputAdvertiser = document.querySelector('.form-control.adv-input');
 const addedItemsList = document.querySelector('.added-items-list');
 const addBtn = document.querySelector('.add-btn');
+const listMessage = document.querySelector('.list-message');
 let advertisersArray = [];
 
 const addAdvertiserItem = (advertiserName) => {
@@ -115,8 +116,8 @@ addBtn.addEventListener('click', (e)=> {
         addAdvertiserItem(advertiserName);
         advertisersArray.push(inputAdvertiser.value);
         inputAdvertiser.value = '';
+        listMessage.style.display = 'none';
         isInputValidated = true;
-        btnAble();
     }
 })
 
@@ -232,7 +233,7 @@ const handleSubmit = () => {
     } else {
         showModal(`
             <p class="message-text">
-                Здається, ми вже отримали ваші відповіді, дякуємо :)
+                Упс... Щось пішло не так :(
             </p>
             <a href=${siteBase} class="btn btn-link">
                 Оновити сторiнку
