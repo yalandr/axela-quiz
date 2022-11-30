@@ -107,8 +107,9 @@ let advertisersArray = [];
 
 const addAdvertiserItem = (advertiserName) => {
     let advertiserItem  = ` 
-        <li class="added-list-item">
+        <li class="added-list-item flex center just-btwn" id="${advertiserName}">
             ${advertiserName}
+            <button class="delete-btn flex center just-center" title="Видалити"></button>
         </li>
         ` 
     addedItemsList.innerHTML += advertiserItem;
@@ -116,7 +117,7 @@ const addAdvertiserItem = (advertiserName) => {
     btnAble();
 }
 
-addBtn.addEventListener('click', (e)=> {
+addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let advertiserName = inputAdvertiser.value;
     advertiserName = advertiserName.trim();
@@ -124,11 +125,26 @@ addBtn.addEventListener('click', (e)=> {
         return false;
     } else {
         addAdvertiserItem(advertiserName);
-        advertisersArray.push(inputAdvertiser.value);
+        advertisersArray.push(advertiserName);
         inputAdvertiser.value = '';
         listMessage.style.display = 'none';
     }
 })
+
+addedItemsList.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.classList.contains("delete-btn")) {
+        e.target.parentElement.remove();
+        let itemToDelete = advertisersArray.indexOf(e.target.parentElement.id);
+        advertisersArray.splice(itemToDelete, 1);
+        if (!advertisersArray.length) {
+            btnDisable();
+            isInputValidated = false;
+            listMessage.style.display = 'block';
+        }
+    }
+})
+
 
 // DATA RECORDING
 const mainForm = document.querySelector('#mainForm');
