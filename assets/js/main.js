@@ -113,6 +113,8 @@ const addAdvertiserItem = (advertiserName) => {
         </li>
         ` 
     addedItemsList.innerHTML += advertiserItem;
+    isInputValidated = true;
+    btnAble();
 }
 
 addBtn.addEventListener('click', (e)=> {
@@ -126,7 +128,6 @@ addBtn.addEventListener('click', (e)=> {
         advertisersArray.push(inputAdvertiser.value);
         inputAdvertiser.value = '';
         listMessage.style.display = 'none';
-        isInputValidated = true;
     }
 })
 
