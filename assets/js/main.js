@@ -17,7 +17,7 @@ let index = 0;
 let questionsPassed = 0;
 let isInputValidated = false;
 
-// FUNCTIONS & METHODS =========================================
+// FUNCTIONS & METHODS =================================================
 
 // BUTTON ABILITY
 const btnAble = () => {
@@ -329,3 +329,5 @@ arrowBack.addEventListener('click', (e) => {
     e.preventDefault();
     questionBack();
 });
+
+// 2022 https://github.com/yalandr ===========================================
