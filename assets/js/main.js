@@ -1,3 +1,7 @@
+// CONFIGURATIONAL VARIABLES ============================================
+const sheetBestLink = 'https://sheet.best/api/sheets/99355b8f-b293-4c9a-9508-3aad59f0efac';
+const siteBase = "/";
+
 // VARIABLES ============================================================
 const btnNext = document.querySelector('.btn-next');
 const quizStep = document.querySelectorAll('.quiz-step');
@@ -13,11 +17,7 @@ let index = 0;
 let questionsPassed = 0;
 let isInputValidated = false;
 
-// CONFIGURATIONAL VARIABLES ============================================
-const sheetBestLink = 'https://sheet.best/api/sheets/99355b8f-b293-4c9a-9508-3aad59f0efac';
-let siteBase = "/";
-
-// FUNCTIONS ============================================================
+// FUNCTIONS & METHODS =========================================
 
 // BUTTON ABILITY
 const btnAble = () => {
@@ -252,7 +252,7 @@ const handleSubmit = () => {
             <p class="thankyou-text">
                 Ми отримали вашу заявку та зв’яжемося з вами найближчим часом
             </p>
-            <a href="https://axela.network/" class="btn btn-link" target="_blank">
+            <a href="https://axela.network/" class="btn btn-link">
                 Перейти на сайт а́xela
             </a>
         `);
