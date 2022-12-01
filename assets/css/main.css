@@ -369,10 +369,10 @@ a {
     cursor: pointer;
     border: none;
     opacity: 0.5;
-    transition: .2s;
+    transition: .1s;
 }
 .btn:active {
-    transform: scale(0.98);
+    transform: scale(0.99);
 }
 .arrow-next-img {
     width: 14px;
