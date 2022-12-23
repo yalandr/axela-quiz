@@ -88,7 +88,8 @@ inputCheckbox.forEach((el) => {
             inputCheckboxChecked.push(el);
             console.log(inputCheckboxChecked);
         } else {
-            inputCheckboxChecked.pop(el);
+//             inputCheckboxChecked.pop(el);
+            inputCheckboxChecked.splice(inputCheckboxChecked.indexOf(el));
             console.log(inputCheckboxChecked);
             if (inputCheckboxChecked.length === 0) {
                 isInputValidated = false;
