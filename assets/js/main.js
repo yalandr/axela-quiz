@@ -86,8 +86,10 @@ inputCheckbox.forEach((el) => {
             btnAble();
             isInputValidated = true;
             inputCheckboxChecked.push(el);
+            console.log(inputCheckboxChecked);
         } else {
             inputCheckboxChecked.pop(el);
+            console.log(inputCheckboxChecked);
             if (inputCheckboxChecked.length === 0) {
                 isInputValidated = false;
                 btnDisable();
